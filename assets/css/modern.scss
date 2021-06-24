@@ -37,23 +37,23 @@ html, body {
 
 /*Background color of the navbar*/
 .navbar-inner {
-    background-color: #3097d1;
+    background-color: #00397D;
     background-image: none;
     color: white;
 }
 .navbar-inverse .navbar-inner {
-    background-color: #3097d1;
+    background-color: #00397D;
     background-image: none;
     color: white;
-    border-color: #3097d1;
+    border-color: #00397D;
 }
 .navbar .nav > li > a {
-    background-color: #3097d1;
+    background-color: #00397D;
     color: white;
 }
 .navbar .nav > li > a:focus,
 .navbar .nav > li > a:hover {
-    background-color: #3097d1;
+    background-color: #00397D;
     color: white;
 }
 .navbar .nav > .active > a,
@@ -65,11 +65,11 @@ html, body {
 .navbar-inverse .nav li.dropdown.open>.dropdown-toggle,
 .navbar-inverse .nav li.dropdown.active>.dropdown-toggle,
 .navbar-inverse .nav li.dropdown.open.active>.dropdown-toggle {
-    background-color: #3097d1;
+    background-color: #00397D;
     color: #dddada;
 }
 .navbar .brand {
-    background-color: #3097d1;
+    background-color: #00397D;
     color: white;
 }
 

@@ -11,6 +11,7 @@ services:
       - MYSQL_PASSWORD=jorani
     volumes:
       - ./application/:/var/www/html/application/
+      - ./assets/:/var/www/html/assets/
   mysql:
     image: mysql:8.0
     ports:
