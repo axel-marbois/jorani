@@ -3,7 +3,7 @@ services:
   jorani:
     build: .
     ports:
-      - "80:80"
+      - "8081:80"
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=jorani
@@ -15,7 +15,7 @@ services:
   mysql:
     image: mysql:8.0
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=jorani
       - MYSQL_DATABASE=jorani
