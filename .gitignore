@@ -24,5 +24,3 @@ application/temp/*
 /assets/js/app.js
 /assets/css/app.css
 /assets/custom_assets/
-
-yarn-error.log

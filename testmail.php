@@ -25,24 +25,30 @@ define('EMAIL_ADDRESS', '');
 <html>
     <head>
         <title>Jorani Email Configuration</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32">
-        <link rel="stylesheet" href="assets/dist/requirements.css">
-        <script type="text/javascript" src="assets/dist/requirements.js"></script>
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/MDI-3.4.93/css/materialdesignicons.min.css">
+        <script type="text/javascript" src="assets/js/jquery-2.2.4.min.js"></script>
+        <style>
+        .nolink {
+            color: black;
+        }
+        </style>
     </head>
     <body>
-        <div class="container">
-
+        <div class="container-fluid">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link" href="home" title="login to Jorani"><i class="mdi mdi-home nolink"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="requirements.php">Requirements</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">Email</a></li>
-                <li class="nav-item"><a class="nav-link" href="testldap.php">LDAP</a></li>
-                <li class="nav-item"><a class="nav-link" href="testssl.php">SSL</a></li>
-                <li class="nav-item"><a class="nav-link" href="testoauth2.php">OAuth2</a></li>
-                <li class="nav-item"><a class="nav-link" href="testapi.php">API HTTP</a></li>
-            </ul>
-
+                <li><a href="home" title="login to Jorani"><i class="mdi mdi-home nolink"></i></a></li>
+                <li><a href="requirements.php">Requirements</a></li>
+                <li class="active"><a href="#">Email</a></li>
+                <li><a href="testldap.php">LDAP</a></li>
+                <li><a href="testssl.php">SSL</a></li>
+                <li><a href="testoauth2.php">OAuth2</a></li>
+                <li><a href="opcache.php">Opcache</a></li>
+                <li><a href="testapi.php">API HTTP</a></li>
+              </ul>
             <h1>Test of your e-mail configuration</h1>
 
 <?php
@@ -53,7 +59,7 @@ $configCIFileExists = file_exists($pathCIConfigFile);
 $configFileExists = file_exists($pathConfigFile);
 
 if (EMAIL_ADDRESS == '') {
-    echo '<div class="alert alert-danger" role="alert"><b>ERROR:</b> Please provide a valid e-mail address in testmail.php.</div>' . PHP_EOL;
+    echo '<b>ERROR:</b> Please provide a valid e-mail address in testmail.php.<br />' . PHP_EOL;
 } else {
     if ($configFileExists && $configCIFileExists) {
         include $pathCIConfigFile;
@@ -124,7 +130,7 @@ if (EMAIL_ADDRESS == '') {
             echo $text . PHP_EOL;
         }
     } else {
-        echo '<div class="alert alert-danger" role="alert"><b>ERROR:</b> The configuration doesn\'t exist.</div>' . PHP_EOL;
+        echo '<b>ERROR:</b> The configuration doesn\'t exist.<br />' . PHP_EOL;
     }
 }
 ?>

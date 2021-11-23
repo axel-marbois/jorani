@@ -111,7 +111,7 @@
                             <th><?php echo lang('hr_employees_thead_position');?></th>
                         </tr>
                     </thead>
-                    <tbody class="employees-area">
+                    <tbody class="context" data-toggle="context" data-target="#context-menu">
                     </tbody>
                 </table>
             </div>
@@ -259,19 +259,35 @@
     </div>
 </div>
 
+<div id="context-menu">
+  <ul class="dropdown-menu" role="menu">
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/leaves/create/{id}"><i class="mdi mdi-file-plus nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_create_leave');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="mdi mdi-account-edit"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>entitleddays/user/{id}"><i class="mdi mdi-pencil-box-outline"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/leaves/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_leaves');?></a></li>
+        <?php if ($this->config->item('disable_overtime') == FALSE) { ?>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/overtime/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_extra');?></a></li>
+        <?php } ?>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/counters/employees/{id}"><i class="mdi mdi-information-outline"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>hr/presence/employees/{id}"><i class="mdi mdi-chart-pie"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>calendar/year/{id}"><i class="mdi mdi-calendar-text"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a></li>
+        <li><a tabindex="-1" href="#" data-action="<?php echo base_url();?>requests/delegations/{id}"><i class="mdi mdi-share nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a></li>
+  </ul>
+</div>
+
 <div class="modal hide fade" id="frmContextMenu">
     <div class="modal-body">
-        <a class="context" href="<?php echo base_url();?>hr/leaves/create/{id}"><i class="mdi mdi-file-plus nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_create_leave');?></a><br />
-        <a class="context" href="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="mdi mdi-account-edit nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a><br />
-        <a class="context" href="<?php echo base_url();?>entitleddays/user/{id}"><i class="mdi mdi-pencil-box-outline nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a><br />
-        <a class="context" href="<?php echo base_url();?>hr/leaves/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_leaves');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/leaves/create/{id}"><i class="mdi mdi-file-plus nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_create_leave');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>users/edit/{id}?source=hr%2Femployees"><i class="mdi mdi-account-edit nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_edit');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>entitleddays/user/{id}"><i class="mdi mdi-pencil-box-outline nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_tip_entitlment');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/leaves/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_leaves');?></a><br />
         <?php if ($this->config->item('disable_overtime') == FALSE) { ?>
-        <a class="context" href="<?php echo base_url();?>hr/overtime/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_extra');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/overtime/{id}"><i class="mdi mdi-format-list-bulleted nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_extra');?></a><br />
         <?php } ?>
-        <a class="context" href="<?php echo base_url();?>hr/counters/employees/{id}"><i class="mdi mdi-information-outline nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a><br />
-        <a class="context" href="<?php echo base_url();?>hr/presence/employees/{id}"><i class="mdi mdi-chart-pie nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a><br />
-        <a class="context" href="<?php echo base_url();?>calendar/year/{id}"><i class="mdi mdi-calendar-text nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a><br />
-        <a class="context" href="<?php echo base_url();?>requests/delegations/{id}"><i class="mdi mdi-share nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a>
+        <a class="context-mobile" href="<?php echo base_url();?>hr/counters/employees/{id}"><i class="mdi mdi-information-outline nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_balance');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>hr/presence/employees/{id}"><i class="mdi mdi-chart-pie nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_presence');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>calendar/year/{id}"><i class="mdi mdi-calendar-text nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_calendar');?></a><br />
+        <a class="context-mobile" href="<?php echo base_url();?>requests/delegations/{id}"><i class="mdi mdi-share nolink"></i>&nbsp;<?php echo lang('hr_employees_thead_link_delegation');?></a>
   </div>
 </div>
 
@@ -289,12 +305,16 @@
 <link href="<?php echo base_url();?>assets/datatable/ColReorder-1.3.1/css/colReorder.dataTables.min.css" rel="stylesheet">
 <link href="<?php echo base_url();?>assets/datatable/Select-1.1.2/css/select.dataTables.min.css" rel="stylesheet">
 <link rel="stylesheet" href="<?php echo base_url();?>assets/css/flick/jquery-ui.custom.min.css">
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/moment-with-locales.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/DataTables-1.10.11/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/Buttons-1.1.2/js/dataTables.buttons.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/Buttons-1.1.2/js/buttons.colVis.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/ColReorder-1.3.1/js/dataTables.colReorder.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/datatable/Select-1.1.2/js/dataTables.select.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootbox.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/js.state-2.2.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/context.menu.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/toe.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/jquery-ui.custom.min.js"></script>
 <?php //Prevent HTTP-404 when localization isn't needed
 if ($language_code != 'en') { ?>
@@ -305,6 +325,7 @@ if ($language_code != 'en') { ?>
 var entity = 0; //Root of the tree by default
 var entityName = '';
 var includeChildren = true;
+var contextObject;
 var contextSelectEntity = "select";
 var filterActive = "all"; //active (only), inactive (only), all
 var oTable;
@@ -496,6 +517,16 @@ function add_entitleddays() {
     $("#frmAddEntitledDays").modal('hide');
 }
 
+//Prevent text selection after double click
+function clearSelection() {
+    if(document.selection && document.selection.empty) {
+        document.selection.empty();
+    } else if(window.getSelection) {
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+    }
+}
+
 $(function () {
 <?php if ($this->config->item('csrf_protection') == TRUE) {?>
     $.ajaxSetup({
@@ -518,40 +549,51 @@ $(function () {
         }
       });
 
-    //Handle links clicked into the context menu popup
-    function handleLinksInContextMenu(e) {
+    //Handle a context menu of the DataTable
+    $('.context').contextmenu({
+        before: function (e, element, target) {
+            e.preventDefault();
+            if (oTable.data().any()) {
+                contextObject = e.target;
+                return true;
+            } else {
+                return false;
+            }
+        },
+        onItem: function(context,e) {
+            var action = null;
+            if (e != "a") {
+                action = $(e.target).closest("a").data("action");
+            } else {
+                action = $(e.target).data("action");
+            }
+            var id = $(contextObject).closest("tr").find('td:eq(0)').text();
+            var url = action.replace("{id}", id.trim());
+            window.location = url;
+        }
+      });
+
+    //Taphold on mobile, display contextual menu as a popup
+    $(document).on('taphold', '.context', function(e){
         id = $(e.target).closest("tr").find('td:eq(0)').text();
         $("#frmContextMenu").modal('show');
-        $('.context').each(function() {
+        $('.context-mobile').each(function() {
             action =  $(this).attr( 'href');
             var url = action.replace("{id}", id.trim());
             $(this).attr( 'href', url);
-        }); 
-    }
-    
-    //Long press on mobile, display contextual menu as a popup
-    $(document).on('contextmenu', '.employees-area', function (e) {
-        e.preventDefault();
-        handleLinksInContextMenu(e);
-    });
-
-    //Long press on mobile, display contextual menu as a popup
-    var hammer = new Hammer(document, {time: 600});
-    hammer.on('press', function(e) {
-        handleLinksInContextMenu(e);
-    });
+        });
+      });
 
     //On double click, display contextual menu as a popup
-    $(document).on('dblclick', '.employees-area', function (e) {
-        //Prevent text selection after double click
-        if(document.selection && document.selection.empty) {
-            document.selection.empty();
-        } else if(window.getSelection) {
-            var sel = window.getSelection();
-            sel.removeAllRanges();
-        }
-        //Handle links
-        handleLinksInContextMenu(e);
+    $(document).on('dblclick', '.context', function (e) {
+        clearSelection();
+        id = $(e.target).closest("tr").find('td:eq(0)').text();
+        $("#frmContextMenu").modal('show');
+        $('.context-mobile').each(function() {
+            action =  $(this).attr( 'href');
+            var url = action.replace("{id}", id.trim());
+            $(this).attr( 'href', url);
+        });
     });
 
     //On keying ESC, hide context menu

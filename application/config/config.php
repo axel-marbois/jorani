@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= getEnv('BASE_URL');
+$config['base_url']	= '';
 
 if (($config['base_url'] == '')) {
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
@@ -117,6 +117,28 @@ $config['subclass_prefix'] = 'MY_';
 
 /*
 |--------------------------------------------------------------------------
+| Composer auto-loading
+|--------------------------------------------------------------------------
+|
+| Enabling this setting will tell CodeIgniter to look for a Composer
+| package auto-loader script in application/vendor/autoload.php.
+|
+|	$config['composer_autoload'] = TRUE;
+|
+| Or if you have your vendor/ directory located somewhere else, you
+| can opt to set a specific path as well:
+|
+|	$config['composer_autoload'] = '/path/to/vendor/autoload.php';
+|
+| For more information about Composer, please visit https://getcomposer.org/
+|
+| Note: This will NOT disable or override the CodeIgniter-specific
+|	autoloading (application/config/autoload.php)
+*/
+$config['composer_autoload'] = FALSE;
+
+/*
+|--------------------------------------------------------------------------
 | Allowed URL Characters
 |--------------------------------------------------------------------------
 |
@@ -185,7 +207,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 2;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -284,7 +306,7 @@ $config['encryption_key'] = 'YJ9FljXV4axG7QTzEzbRaUBFwi0FzIls';
 */
 $config['sess_cookie_name']	= 'jorani_session';
 $config['sess_driver'] = 'database';
-$config['sess_save_path'] = NULL;
+$config['sess_save_path'] = 'ci_sessions';
 $config['sess_regenerate_destroy'] = FALSE;
 $config['sess_expiration']	= 7200;
 $config['sess_use_database']	= FALSE;
@@ -421,7 +443,7 @@ $config['proxy_ips'] = '';
 
 //____________________________________________________________________________
 //default email from
-$config['from_mail'] = getEnv('FROM_MAIL') ?: 'do.not@reply.me';
+$config['from_mail'] = 'do.not@reply.me';
 $config['from_name'] = 'Jorani';
 $config['subject_prefix'] = '[Jorani] ';
 
@@ -461,7 +483,7 @@ $config['disallow_requests_without_credit'] = TRUE;
 //____________________________________________________________________________
 //List of available languages. If you limit this list to one language, the list of available languages will be hidden from the login form
 //Beware that regional variant is case sensitivie (e.g. "en-GB" and not "en-gb")
-$config['languages'] = 'en,en-GB,fr,es,nl,de,it,ru,cs,uk,km,fa,vi,tr,zh,el,pt,ar,hu,ca,ro';
+$config['languages'] = 'en,en-GB,fr,es,nl,de,it,ru,cs,uk,km,fa,vi,tr,zh,el,pt,ar,hu,ca,ro,sk';
 
 //If you want to use another font for a specific language, put the font into assets/fonts folder and map as in this example
 //Extra fonts are coming from Google noto font project: https://www.google.com/get/noto/
@@ -513,10 +535,10 @@ $config['ldap_search_pattern'] = 'cn=%s';   //Change the pattern, but let %s tha
 
 //____________________________________________________________________________
 //Oauth2 configuration
-$config['oauth2_enabled'] = !!getEnv('OAUTH2_CLIENT_ID');
+$config['oauth2_enabled'] = FALSE;
 $config['oauth2_provider'] = 'google';   //Supported providers: google
-$config['oauth2_client_id'] = getEnv('OAUTH2_CLIENT_ID');
-$config['oauth2_client_secret'] = getEnv('OAUTH2_CLIENT_SECRET');
+$config['oauth2_client_id'] = '';
+$config['oauth2_client_secret'] = '';
 
 //____________________________________________________________________________
 //SAML configuration

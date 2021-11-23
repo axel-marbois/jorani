@@ -17,15 +17,19 @@
     <meta name="version" content="0.6.0">
     <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/legacy.css">
+    <link href="<?php echo base_url();?>assets/css/jorani-0.6.6.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/MDI-3.4.93/css/materialdesignicons.min.css">
 <?php CI_Controller::get_instance()->load->helper('language');
 $this->lang->load('global', $language);?>
-    <!--[if lte IE 9]>
+    <!--[if lte IE 8]>
     <script type="text/javascript">
     alert("<?php echo lang('global_msg_old_browser'); ?>");
     </script>
     <![endif]-->
-    <script type="text/javascript" src="<?php echo base_url();?>assets/dist/legacy.js"></script>
+    <!--[if lt IE 9]>
+    <script src="<?php echo base_url();?>assets/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>favicon.ico" sizes="32x32">
     <style>

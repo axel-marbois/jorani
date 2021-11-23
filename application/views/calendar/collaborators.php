@@ -68,11 +68,13 @@
 </div>
 
 <link href="<?php echo base_url();?>assets/fullcalendar-2.8.0/fullcalendar.css" rel="stylesheet">
+<script type="text/javascript" src="<?php echo base_url();?>assets/fullcalendar-2.8.0/lib/moment.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>assets/fullcalendar-2.8.0/fullcalendar.min.js"></script>
 <?php if ($language_code != 'en') {?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/fullcalendar-2.8.0/lang/<?php echo strtolower($language_code);?>.js"></script>
 <?php }?>
 <script src="<?php echo base_url();?>assets/js/bootbox.min.js"></script>
+<script src="<?php echo base_url();?>assets/js/clipboard-1.6.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
     
@@ -151,7 +153,7 @@ $(document).ready(function() {
     });
     
     //Copy/Paste ICS Feed
-    var client = new ClipboardJS("#cmdCopy");
+    var client = new Clipboard("#cmdCopy");
     $('#lnkICS').click(function () {
         $("#frmLinkICS").modal('show');
     });

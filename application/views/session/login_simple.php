@@ -14,18 +14,22 @@
     <meta charset="utf-8">
     <title><?php echo $title ?> - Jorani</title>
     <meta description="Jorani a free and open source leave management system. Workflow of approval; e-mail notifications; calendars; reports; export to Excel and more.">
-    <meta name="version" content="1.0.1">
+    <meta name="version" content="0.6.0">
     <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/dist/legacy.css">
+    <link href="<?php echo base_url();?>assets/css/jorani-0.6.6.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css">
 <?php CI_Controller::get_instance()->load->helper('language');
 $this->lang->load('global', $language);?>
-    <!--[if lte IE 9]>
+    <!--[if lte IE 8]>
     <script type="text/javascript">
     alert("<?php echo lang('global_msg_old_browser'); ?>");
     </script>
     <![endif]-->
-    <script type="text/javascript" src="<?php echo base_url();?>assets/js/legacy.js"></script>
+    <!--[if lt IE 9]>
+    <script src="<?php echo base_url();?>assets/js/html5shiv.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.4.min.js"></script>
     <script type="text/javascript" src="<?php echo base_url();?>assets/bootstrap/js/bootstrap.min.js"></script>
     <link rel="icon" type="image/x-icon" href="<?php echo base_url();?>favicon.ico" sizes="32x32">
     <style>
@@ -90,16 +94,17 @@ if (!is_null($fonts)) {
     </div>
 </div>
 
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jsencrypt.min.js"></script>
 <script type="text/javascript">
 
     //Encrypt the password using RSA and send the ciphered value into the form
     function submit_form() {
-        var encrypter = new CryptoTools();
-        var clearText = $('#password').val() + $('#salt').val();
-        encrypter.encrypt($('#pubkey').val(), clearText).then((encrypted) => {
-            $('#CipheredValue').val(encrypted);
-            $('#loginFrom').submit();
-        });
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey($('#pubkey').val());
+        //Encrypt the concatenation of the password and the salt
+        var encrypted = encrypt.encrypt($('#password').val() + $('#salt').val());
+        $('#CipheredValue').val(encrypted);
+        $('#loginForm').submit();
     }
 
     $(function () {

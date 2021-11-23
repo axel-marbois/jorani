@@ -111,14 +111,11 @@ class Connection extends CI_Controller {
             $password = '';
             if (function_exists('openssl_pkey_get_private')) {
                 $privateKey = openssl_pkey_get_private(file_get_contents('./assets/keys/private.pem', TRUE));
-                openssl_private_decrypt(base64_decode($this->input->post('CipheredValue')), $password, $privateKey, OPENSSL_PKCS1_OAEP_PADDING);
-                while ($msg = openssl_error_string()) {
-                    log_message('error', 'openssl error message=' . $msg);
-                }
+                openssl_private_decrypt(base64_decode($this->input->post('CipheredValue')), $password, $privateKey);
             } else {
                 $rsa = new phpseclib\Crypt\RSA();
                 $privateKey = file_get_contents('./assets/keys/private.pem', TRUE);
-                $rsa->setEncryptionMode(phpseclib\Crypt\RSA::ENCRYPTION_OAEP);
+                $rsa->setEncryptionMode(phpseclib\Crypt\RSA::ENCRYPTION_PKCS1);
                 $rsa->loadKey($privateKey, phpseclib\Crypt\RSA::PRIVATE_FORMAT_PKCS1);
                 $password = $rsa->decrypt(base64_decode($this->input->post('CipheredValue')));
             }

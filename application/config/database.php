@@ -74,7 +74,7 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn' => 'mysql:dbname='.getEnv('MYSQL_DATABASE').';host='.getEnv('MYSQL_HOST'),
+	'dsn'	=> 'mysql:dbname='.getEnv('MYSQL_DATABASE').';host='.getEnv('MYSQL_HOST'),
 	'hostname' => getEnv('MYSQL_HOST'),
 	'username' => getEnv('MYSQL_USER'),
 	'password' => getEnv('MYSQL_PASSWORD'),

@@ -20,25 +20,30 @@ define('KEY_SIZE', 1024);   //Change the RSA key size
 <html>
     <head>
         <title>Jorani OpenSSL Configuration</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta charset="UTF-8">
         <link rel="icon" type="image/x-icon" href="favicon.ico" sizes="32x32">
-        <link rel="stylesheet" href="assets/dist/requirements.css">
-        <script type="text/javascript" src="assets/dist/requirements.js"></script>
+        <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="assets/MDI-3.4.93/css/materialdesignicons.min.css">
+        <script type="text/javascript" src="assets/js/jquery-2.2.4.min.js"></script>
+        <style>
+        .nolink {
+            color: black;
+        }
+        </style>
     </head>
     <body>
-        <div class="container">
-
+        <div class="container-fluid">
             <ul class="nav nav-pills">
-                <li class="nav-item"><a class="nav-link" href="home" title="login to Jorani"><i class="mdi mdi-home nolink"></i></a></li>
-                <li class="nav-item"><a class="nav-link" href="requirements.php">Requirements</a></li>
-                <li class="nav-item"><a class="nav-link" href="testmail.php">Email</a></li>
-                <li class="nav-item"><a class="nav-link" href="testldap.php">LDAP</a></li>
-                <li class="nav-item"><a class="nav-link active" href="#">SSL</a></li>
-                <li class="nav-item"><a class="nav-link" href="testoauth2.php">OAuth2</a></li>
-                <li class="nav-item"><a class="nav-link" href="testapi.php">API HTTP</a></li>
-            </ul>
-
+                <li><a href="home" title="login to Jorani"><i class="mdi mdi-home nolink"></i></a></li>
+                <li><a href="requirements.php">Requirements</a></li>
+                <li><a href="testmail.php">Email</a></li>
+                <li><a href="testldap.php">LDAP</a></li>
+                <li class="active"><a href="#">SSL</a></li>
+                <li><a href="testoauth2.php">OAuth2</a></li>
+                <li><a href="opcache.php">Opcache</a></li>
+                <li><a href="testapi.php">API HTTP</a></li>
+              </ul>
             <h1>Test of your OpenSSL setup</h1>
 
             <p>This page will help you to check your OpenSSL setup and to generate a <a href="#pair">private and public key pair</a>.</p>
@@ -48,7 +53,7 @@ define('KEY_SIZE', 1024);   //Change the RSA key size
             <h2>PHP Security library</h2>
 
             <table class="table table-bordered table-hover table-condensed">
-                <thead class="thead-dark">
+                <thead>
                     <tr>
                       <th>Requirement</th>
                       <th>Value / Description</th>
@@ -97,7 +102,7 @@ echo "<tr><td>OpenSSL Header</td><td>" . ((isset($versions['Header']))? $version
 $rsa = new \phpseclib\Crypt\RSA();
 echo "<tr><td>CRYPT_RSA_MODE</td><td>" . ((CRYPT_RSA_MODE==1)? 'MODE_INTERNAL' : 'MODE_OPENSSL')  . '</td></tr>';
 
-$rsa->setEncryptionMode(phpseclib\Crypt\RSA::ENCRYPTION_OAEP);
+$rsa->setEncryptionMode(phpseclib\Crypt\RSA::ENCRYPTION_PKCS1);
 $plaintext = 'Jorani is the best open source Leave Management System';
 
 $rsa->loadKey($publicKey);
@@ -113,7 +118,7 @@ echo "<tr><td>Decryption speed (fallback)</td><td>" . $time  . '</td></tr>';
 if (function_exists('openssl_pkey_get_private')) {
     $time_start = microtime(true);
     $key = openssl_pkey_get_private($privateKey);
-    openssl_private_decrypt($ciphertext, $message, $key, OPENSSL_PKCS1_OAEP_PADDING);
+    openssl_private_decrypt($ciphertext, $message, $key);
     echo "<tr><td>Decrypted message</td><td>" . $message . '</td></tr>';
     $time_end = microtime(true);
     $time = $time_end - $time_start;
@@ -135,28 +140,23 @@ extract($rsa->createKey(KEY_SIZE));
 
             <p>You can copy/paste the content below into <code>assets/keys/private.pem</code>.</p>
 
-            <textarea class="form-control" id="privateKey" rows="15" style="width:100%;"><?php echo $privatekey; ?></textarea>
-            <button class="btn btn-light btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#privateKey" data-toggle="tooltip" data-placement="right" title="copied">
-                Copy to clipboard
-            </button>
+<div class="row-fluid">
+    <div class="span6">
+<pre><?php echo $privatekey; ?></pre>
+    </div>
+    <div class="span6"></div>
+</div>
 
             <h3>Public Key</h3>
 
             <p>You can copy/paste the content below into <code>assets/keys/public.pem</code>.</p>
 
-            <textarea class="form-control" id="publicKey" rows="6" style="width:100%;"><?php echo $publickey; ?></textarea>
-            <button class="btn btn-light btn-clipboard" data-clipboard-action="copy" data-clipboard-target="#publicKey" data-toggle="tooltip" data-placement="right" title="copied">
-                Copy to clipboard
-            </button>
-
-<br /><br /><br />
+<div class="row-fluid">
+    <div class="span6">
+<pre><?php echo $publickey; ?></pre>
+    </div>
+    <div class="span6"></div>
+</div>
         </div>
-
-<script type="text/javascript">
-$(function () {
-    var client = new ClipboardJS(".btn-clipboard");
-});
-</script>
-
     </body>
 </html>
