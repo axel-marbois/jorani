@@ -3,27 +3,20 @@ services:
   jorani:
     build: .
     ports:
-      - "8081:80"
+      - "80:80"
     environment:
       - MYSQL_HOST=mysql
       - MYSQL_DATABASE=jorani
       - MYSQL_USER=jorani
       - MYSQL_PASSWORD=jorani
-    volumes:
-      - ./application/:/var/www/html/application/
-      - ./assets/:/var/www/html/assets/
   mysql:
-    image: mysql:8.0
+    image: mysql:5
     ports:
-      - "3307:3306"
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=jorani
       - MYSQL_DATABASE=jorani
       - MYSQL_USER=jorani
       - MYSQL_PASSWORD=jorani
     volumes:
-      - ./sql/GetFamilyTree_mysql5.6.sql:/docker-entrypoint-initdb.d/01-GetFamilyTree_mysql5.6.sql
-      - ./sql/jorani.sql:/docker-entrypoint-initdb.d/02-jorani.sql
-
-# Si erreur mysql : lancer mysql -u root -pjorani jorani < 01-GetFamilyTree_mysql5.6.sql
-# puis : mysql -u root -pjorani jorani < 02-jorani.sql
+      - ./sql/jorani.sql:/docker-entrypoint-initdb.d/jorani.sql

@@ -16,12 +16,12 @@
         <div class="span8 pull-left" id="rum_info">
             &nbsp;
         </div>
-        <div class="span5 pull-right">
+        <div class="span4 pull-right">
               <?php switch ($language_code){
-                  case 'fr' : echo 'Ce site utilise <a class="anchor" href="https://fr.jorani.org/" target="_blank">Jorani</a>'; break;
+                  case 'fr' : echo '<a class="anchor" href="https://fr.jorani.org/" target="_blank">Jorani</a>'; break;
                   default : echo '<a class="anchor" href="https://jorani.org/" target="_blank">Jorani</a>'; break;
               } ?>
-          &nbsp;v<?php echo $GLOBALS['versionOfJorani'];?>&nbsp;&copy;2014-2019 Benjamin BALET - Axel MARBOIS
+          &nbsp;v<?php echo $GLOBALS['versionOfJorani'];?>&nbsp;&copy;2014-2019 Benjamin BALET
         </div>
     </div>
     </div>

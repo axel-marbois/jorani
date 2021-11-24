@@ -7,7 +7,7 @@
  * @since         0.1.0
  */
 
-$lang['Leave Management System'] = 'Gestion des demandes de congés';
+$lang['Leave Management System'] = 'Gestion des demandes de congé';
 $lang['global_link_tooltip_documentation'] = 'Lien vers la documentation';
 $lang['global_msg_error_forbidden'] = 'L\'opération (%s) n\'est pas autorisée';
 $lang['global_msg_wait'] = 'Veuillez patienter';
